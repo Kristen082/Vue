@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        height: 100px;
+        width: 100px;
+        background: red;
+        /* display: none; */
+    }
+</style>
+<body>
+    <div id="app">
+        <div>{{grade}}</div>
+        <div>人数：{{count}}</div>
+
+        <button @click="flag = !flag">点击</button>
+        <!-- <button v-on:click="flag = !flag">点击</button> -->
+        <div class="box" v-show="flag"></div>
+    </div>
+
+    <!-- <div>{{grade}}</div> -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    console.log(Vue);
+    // let obj = {
+    //         grade:'1701B',
+    //         count:42
+    //     }
+
+   let vm =  new Vue({
+        el:'#app',
+        data: {
+            grade:'1701B',
+            count:42,
+            flag:false
+        }
+    });
+    console.log(vm);
+</script>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    header{
+        height: 44px;
+        width: 100%;
+        display: flex;
+    }
+    header span.cur{
+        flex: 1;
+        text-align: center;
+        line-height: 44px;
+    }
+    header span.active{
+        background: red;
+        color: #fff;
+    }
+    li{
+        line-height: 44px;
+    }
+</style>
+<body>
+    <div id="app">
+        <header>
+            <!-- <span v-for="(item,index) in list" :class="{'active': index == 0}">{{item.title}}</span> -->
+            <span 
+            v-for="(item,index) in list" 
+            :class="[{'active': index == ind},'cur']"
+            @click="changeItem(index)"
+            >{{item.title}}</span>
+        </header>
+        <ul>
+            <li v-for="(item,index) in list[ind].data" :style="styleObj">{{item.txt}}</li>
+        </ul>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            ind:0,
+            styleObj:{
+                color:'red',
+                fontSize:'18px',
+            },
+           
+            list:[
+                {
+                    title:"新闻",
+                    data:[
+                        {
+                            txt:"公安厅长持枪杀人被执行死刑后，政法委书记被逮捕"
+                        },
+                        {
+                            txt:"王毅：霸凌主义行径不得人心，抹黑造谣终将被世人所不齿"
+                        },
+                        {
+                            txt:"上海：7月1日起酒店不再主动提供牙刷梳子等6件日用品"
+                        }
+                    ]
+                },
+                {
+                    title:"列表",
+                    data:[
+                        {
+                            txt:"《新闻联播》上热搜：谈，大门敞开；打，奉陪到底"
+                        },
+                        {
+                            txt:"赶大集 丨 北京中轴线上的大集 “火勺”一天卖上千个"
+                        },
+                        {
+                            txt:"重磅！北京轨道交通新机场线一期6月20日试运行"
+                        }
+                    ]
+                }
+            ]
+        },
+        methods: {
+            changeItem(ind){
+                console.log(9999,ind);
+                this.ind = ind;
+            }
+        },
+    });
+</script>
+</html>

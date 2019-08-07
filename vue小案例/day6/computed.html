@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <div>反转之后的字符串：{{reverseMessage}}</div>
+        <div>反转之后的字符串：{{reverseMessage}}</div>
+        <div>大于80的数据：{{Count}}</div>
+
+        <br />
+        <h3>methods</h3>
+        <div>反转之后的字符串：{{reverseFn()}}</div>
+        <div>反转之后的字符串：{{reverseFn()}}</div>
+        <div>大于80的数据：{{CountFn()}}</div>
+
+        <button @click="btn">点击</button>
+
+
+        <div>总分是：{{getTotal}}</div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            message:'1701A',
+            arr:[80,90,88,76],
+            results:[
+                {name:'数学',grade:80},
+                {name:'英语',grade:90},
+                {name:'语文',grade:70}
+            ],
+            value:''
+        },
+        computed: { //计算属性,计算属性在使用的时候不加括号,可以放多个计算属性，以逗号隔开
+            // reverseMessage(){ //要把结果return出来
+            //     console.log('reverseMessage');
+            //     return this.message.split('').reverse().join('')
+            // },
+            getTotal(){
+              return   this.results.reduce((prev,cur) => prev+cur.grade,0);
+            },
+            reverseMessage:{ //访问器属性
+                get(){ //获取
+                    console.log('9999');
+                    return this.message.split('').reverse().join('');
+                },
+                set(val){ //设置,需要设置值的时候，用对象的这种形式
+                    console.log(val,'val');
+                }
+            },
+            Count(){ //1.可以缓存属性  2.计算属性所依赖的数据（data）发生变化的时候，才会重新计算
+                return this.arr.filter(item => item >80);
+            }
+        },
+        methods: {
+            reverseFn(){
+                console.log('reverseFn');
+                return this.message.split('').reverse().join('')
+            },
+            CountFn(){
+                return this.arr.filter(item => item >80);
+            },
+            btn(){
+                this.reverseMessage = '123';
+            }
+        },
+        watch: { //侦听器
+            message(news,olds){
+                console.log(news,olds,'watch&&&&&');
+                this.value = news;
+            }
+        },
+    });
+</script>
+</html>

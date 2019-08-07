@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" :value="txt" @input="txt = $event.target.value"> -->
+        <input type="text" v-model="txt">
+        <p>{{txt}}</p>
+        <select v-model="sex">
+            <option value="1">男</option>
+            <option value="2">女</option>
+        </select>
+
+        <div>当前性别是：{{sex == 1 ? '男' : '女'}}</div>
+
+        <input type="text" v-model="grade">
+        <p>该生的分数是：{{grade}}</p>
+
+        <div v-if="grade >= 90">该生优秀</div>
+        <div v-else-if="grade >= 80 && grade < 90">该生良好</div>
+        <div v-else-if="grade >= 60 && grade < 80">该生及格</div>
+        <div v-else>该生不及格</div>
+
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            txt:'',
+            grade:80,
+            sex:1
+        },
+        methods: {
+            inputFn(){
+                console.log(9999);
+            }
+        },
+    });
+</script>
+</html>

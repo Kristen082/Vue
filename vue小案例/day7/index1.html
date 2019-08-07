@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-header></my-header>
+        <my-body></my-body>
+        <my-body></my-body>
+    </div>
+
+    <!-- <div id="box">
+        <h3>box</h3>
+    </div> -->
+    <!-- 不会解析 -->
+    <template id="tpl">
+        <div>
+            <span>{{grade}}</span>
+            <span>{{count}}</span>
+            <img :src="item" alt="" v-for="(item,index) in img" :style="styleObj">
+        </div>
+    </template>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- <script type="text/x-template" id="tpl">
+    <div>
+            <span>{{grade}}</span>
+            <span>{{count}}</span>
+            <ul>
+                <li>777</li>
+                <li>999</li>
+            </ul>
+    </div>
+</script> -->
+<script>
+
+    Vue.component('myHeader', {
+        template: '<h3>{{grade}}</h3>',
+        data() {
+            return {
+                grade: '1701A'
+            }
+        }
+    });
+    new Vue({
+        el: '#app',
+        data: {
+        },
+        components: {
+            myBody: {
+                template: '#tpl',
+                data() {
+                    return {
+                        grade: '1701B',
+                        count: 42,
+                        styleObj:{
+                            height:'120px',
+                            width:'120px',
+                            display:'inline-block'
+                        },
+                        img:[
+                        'http://img02.tooopen.com/images/20150507/tooopen_sy_122395947985.jpg',
+                        'http://pic36.nipic.com/20131213/6704106_223232205107_2.png',
+                        'http://img.zcool.cn/community/01b078574706206ac72525ae0beaed.jpg@2o.jpg'
+                        ]
+                    }
+                }
+            }
+        }
+    });
+
+    // new Vue({
+    //     el: '#box'
+    // })
+</script>
+
+</html>

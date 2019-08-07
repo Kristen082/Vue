@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <span>{{grade}}</span>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+   let vm =  new Vue({
+        // el:'#app',
+        template:'<div><h3 ref="grade">{{grade}}</h3><span>{{count}}</span></div>', //template是模板字符串，它会替换掉挂载元素
+        data:{
+            grade:'1701A',
+            count:42
+        },
+        beforeCreate() { //初始化事件，收集配置项
+            console.log('beforeCreate');
+            console.log(this.$el,this.$data,this.grade);
+        },
+        created() {//收集的配置项挂载到实例上边
+            console.log('created');
+            console.log(this.$el,this.$data,this.grade);
+        },
+        beforeMount() { //生成dom节点之前
+            console.log('beforeMount');
+            console.log(this.$el,this.$data,this.grade);
+        },
+        mounted() { //创建完成dom节点
+            console.log('mounted');
+            console.log(this.$el,this.$data,this.grade);
+        },
+        beforeUpdate() {//数据更新之前
+            console.log('beforeUpdate');
+            console.log(this.$refs.grade.innerHTML,'beforeUpdate'); //this.$refs获取的是模板里面所有有ref这个属性的dom,是一个对象
+            console.log(this.$el,this.$data,this.grade);
+        },
+        updated() { //数据更新之后
+            console.log('updated');
+            console.log(this.$refs.grade.innerHTML,'updated'); //this.$refs获取的是模板里面所有有ref这个属性的dom,是一个对象
+            console.log(this.$el,this.$data,this.grade);
+        }
+    });
+
+    vm.$mount('#app'); //外部挂载
+
+    console.log(document.querySelector('h3'));
+</script>
+</html>

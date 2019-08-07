@@ -1,0 +1,7 @@
+div{
+    height: 200px;
+    width: 200px;
+    background: url('../img/下载.png') red;
+    /* background: red; */
+    background-size: 100% 100%;
+}

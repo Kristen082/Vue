@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h3>班级成员</h3>
+
+        <ul>
+            <li v-for="(item,index) in list" v-if="item.flag">
+                <span>姓名：{{item.name}}</span>
+                <span>性别：{{item.sex}}</span>
+                <button @click="detail(item)">详情</button>
+                <button @click="del(index)">删除</button>
+            </li>
+        </ul>
+
+        <input type="text" v-model="name">
+        <select v-model="sex">
+            <option v-for="(item,index) in sexArr" :value="item">{{item}}</option>
+        </select>
+        <button @click="btnSure">提交</button>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            name:'',
+            sex:'男',
+            list:[],
+            sexArr:['男','女']
+        },
+        methods: {
+            btnSure(){
+                console.log(this.name,this.sex);
+                this.list.push({
+                    name:this.name,
+                    sex:this.sex,
+                    flag:true
+                });
+                console.log(this.list);
+            },
+            detail(item){
+                alert('姓名：'+item.name + '性别:'+item.sex);
+            },
+            del(ind){
+                // this.list.splice(ind,1)
+                console.log(this.list);
+            }
+        },
+    });
+</script>
+</html>

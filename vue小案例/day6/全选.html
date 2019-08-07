@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    li{
+        display: flex;
+        height: 44px;
+    }
+    .check{
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        background: #ccc;
+    }
+    .active{
+        background: red;
+    }
+</style>
+<body>
+    <div id="app">
+       <h3>选择你喜欢的明星？</h3>
+
+       <ul>
+           <li v-for="(item,index) in list">
+               <span :class="[{'active': item.flag},'check']" @click="clickRadio(index)"></span>
+               <span>{{item.name}}</span>
+           </li>
+       </ul>
+
+       <div>
+           <span :class="['check',{'active':allFlag}]" @click="allFn"></span>
+           <span >全选</span>
+       </div>
+
+       <div>你喜欢的明星是：{{likeList}}</div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+ let vm =  new Vue({
+        el:'#app',
+        data:{
+            allFlag:false,
+            list:[
+                {
+                    name:'胡歌',
+                    flag:false
+                },
+                {
+                    name:'范冰冰',
+                    flag:false
+                },
+                {
+                    name:'杨幂',
+                    flag:false
+                }
+            ]
+        },
+        computed: {
+            likeList(){
+                return this.list.filter(item => item.flag).map(item1 => item1.name).join(',');
+            }
+        },
+        methods: {
+            clickRadio(ind){ //点击单选
+                this.list[ind].flag = !this.list[ind].flag;
+                this.allFlag = this.list.every(item => item.flag);
+            },
+            allFn(){//点击全选
+                this.allFlag = !this.allFlag;
+                this.list.forEach(item => item.flag = this.allFlag);
+            }
+        },
+    });
+</script>
+</html>

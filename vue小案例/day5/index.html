@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0
+    }
+    .box{
+        height: 100px;
+        width: 100px;
+        background: red;
+    }
+    img{
+        height: 200px;
+        width: 200px;
+        display: inline-block;
+    }
+
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<body>
+    <div id="app" v-cloak>
+        <div v-pre>{{grade}}</div>
+        <div v-text="grade"></div>
+        <div v-html="str"></div>
+
+        <div @click.self.right.prevent="btnClick">
+            <button @click.self="flag = !flag">点击</button>
+            <div class="box" v-show="flag" ></div>
+        </div>
+
+        <a href="http://www.baidu.com" @click.prevent.once>跳转</a>
+
+        <input type="text" @keydown.13="num++">
+        <p>{{num}}</p>
+
+        <ul>
+            <li v-for="(item,index,key) in list"  :key="index">
+                <!-- {{item}} ---  {{index}} ---- {{key}} -->
+                <!-- <img v-bind:src="list[0].src" alt="">
+                <a v-bind:href="list[0].href">{{list[0].title}}</a> -->
+                <img :src="item.src" alt="">
+                <a :href="item.href">{{item.title}}</a>
+            </li>
+        </ul>
+
+        <!-- <b v-for="(item,index,key) in 10">
+            {{item}} ---  {{index}} ---- {{key}}
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </b> -->
+
+        <div v-for="(val,key,index) in grade">
+                {{val}} ---  {{key}} ---- {{index}}
+
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+        </div>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+   let vm =  new Vue({
+        el:'#app',
+        data:{
+            grade:'1701A',
+            str:'<p>666</p>',
+            flag:false,
+            num:1,
+            obj:{
+                name:'小花',
+                age:18
+            },
+            list:[
+                {
+                    title:"图一",
+                    src:"http://img.zcool.cn/community/0167ec5770fb3e0000012e7eb23909.jpg@1280w_1l_2o_100sh.jpg",
+                    href:"http://www.baidu.com"
+                },
+                {
+                    title:"图二",
+                    src:"http://t7.baidu.com/it/u=3334323,3539159968&fm=191&app=48&wm=1,13,90,45,0,7&wmo=10,10&n=0&g=0n&f=JPEG?sec=1853310920&t=ef8d84faa3ed73f5c7ce6f6cfe18811f",
+                    href:"http://www.toutiao.com"
+                }
+            ]
+        },
+        methods: {
+            btnClick(){
+                console.log(this)
+            }
+        },
+    });
+</script>
+</html>

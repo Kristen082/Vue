@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <header>666</header>
+        <my-header></my-header>
+        <my-body></my-body>
+    </div>
+    
+    <div id="box">
+        <h3>box</h3>
+        <my-body></my-body>
+        <my-header></my-header>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //全局注册
+    Vue.component('myHeader',{
+        template:'<div><span>{{grade}}</span><ul><li>9999</li></ul></div>',
+        data(){
+            return {
+                grade:'1701A'
+            }
+        }
+    });
+    
+    new Vue({
+        el:'#app',
+        data:{
+
+        },
+        components:{
+            myBody:{
+                template:'<div>{{count}}</div>',
+                data(){
+                    return{
+                        count:43
+                    }
+                }
+            }
+        }
+    });
+
+
+    new Vue({
+        el:'#box'
+    });
+</script>
+</html>
